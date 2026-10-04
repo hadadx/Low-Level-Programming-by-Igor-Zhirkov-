@@ -1,0 +1,19 @@
+colon.inc
+- Implement the colon macro to create a new dictionary node.
+
+dict.asm
+- Contains the find_word function.
+- Searches the linked-list dictionary.
+- Returns the address of the matching record.
+- Returns 0 if the word is not found.
+
+words.inc
+- Contains the dictionary words created using the colon macro.
+
+main.asm
+- Implements _start.
+- Reads a word into a buffer of maximum 255 characters.
+- Calls find_word to search for it in the dictionary.
+- If found, prints the corresponding value.
+- If not found, prints an error message to stderr.
+
