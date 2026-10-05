@@ -1,5 +1,5 @@
 %include "words.inc"
-%define buffSize 4
+%define buffSize 255
 
 %define EXIT_SUCCESS 0
 %define EXIT_FAILURE 1
@@ -8,7 +8,7 @@ extern exit
 extern find_word
 extern read_word
 extern print_string
-
+extern print_newline
 section .data
 bufferOverFlow: db "word size bigger then buferr",0
 error_len_BOF: equ $ - bufferOverFlow
@@ -38,9 +38,10 @@ _start:
     test rax,rax
     jz .wordNotFoundErorr
 
-    mov rdi,[rax + 8]
+    lea rdi,[rax + 8]
     call print_string
-    
+    call print_newline
+
     mov rdi,EXIT_SUCCESS
     jmp .exit 
 
@@ -50,7 +51,7 @@ _start:
 
     .bufferErorr:
         mov rsi,bufferOverFlow
-        mov rdx,error_len
+        mov rdx,error_len_BOF
         jmp .writeErorr
 
     .wordNotFoundErorr:
@@ -63,6 +64,7 @@ _start:
         mov rdi,2
         syscall
 
+        call print_newline
         mov rdi,EXIT_FAILURE
         jmp exit
 
