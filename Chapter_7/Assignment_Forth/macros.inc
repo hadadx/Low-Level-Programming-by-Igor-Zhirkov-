@@ -1,3 +1,13 @@
+%ifndef MACROS_INC
+%define MACROS_INC
+
+default abs
+
+; Forth VM register aliases.
+%define pc r15
+%define w r14
+%define rstack r13
+
 %define last_word 0
 
 %macro word 2
@@ -11,3 +21,5 @@ xt_%2:
 
 %xdefine last_word w_%2
 %endmacro
+
+%endif

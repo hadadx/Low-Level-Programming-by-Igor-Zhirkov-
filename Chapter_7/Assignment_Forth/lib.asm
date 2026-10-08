@@ -246,20 +246,21 @@ read_char:
     mov rdx,1           ; syscall read arg4 length (1 byte)
     syscall
 
-    cmp rax,-1          ; check if syscall returned error
-    je .EOF
+    cmp rax,1           ; one character was read
+    jne .EOF
     jmp .end
 
     .end:
         xor rax,rax
         mov al,byte[rsi]    ; return the char that was read
+    .return:
         add rsp,0x10
         pop rbp
         ret
 
     .EOF:
         mov rax,0           ; return 0 on end of input
-        jmp .end
+        jmp .return
 
 
 ;arg1(rdi) - buffer address
@@ -374,8 +375,8 @@ parse_uint:
 
         mov rdx,rcx         ; return chars count
         add rsp,0x10
-        pop r12
         pop r13
+        pop r12
         pop rbp
         ret
 
