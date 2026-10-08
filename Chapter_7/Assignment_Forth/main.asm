@@ -5,7 +5,7 @@ extern print_newline
 extern parse_int
 extern exit
 extern find_word
-
+extern string_length
 
 section .data 
 word "dup", dup
@@ -74,8 +74,9 @@ stage_one:
         test rax,rax
         jz .word_not_found
 
-        lea rdi,[rax+13]
-        call [rdi]
+
+        call cfa
+        jmp [rax]
 
         jmp stage_one        
 
@@ -86,11 +87,27 @@ stage_one:
     .word_not_found:
         jmp stage_one
 
+
+
+
+
+; ARG1 - rdi get pointer to node and find the XT adress  
+cfa:
+    push rdi
+    add rdi,8
+    call string_length
+    pop rdi
+    add rax,rdi
+    ret
+
+
 dup_impl:
-    pop rsi
     pop rdi
     pop rax
     imul rax,rdi
     push rax
-    push rsi
-    ret    
+    jmp stage_one
+
+
+
+
