@@ -1,0 +1,103 @@
+# A&Q
+___
+
+**Question 210 Why did we allocate 25 bytes for a 24-character string?**
+For the lest byte of the null
+
+
+**Question 211 Read man for the functions: memcpy, memset, strcpy.**
+
+**Question 212 Read man for functions: fread, fread, fwrite, fprintf, fscanf, fopen, fclose, fflush.**
+
+**Question 213 Do research and find out what will happen if the fflush function is applied to a bidirectional stream (opened for both reading and writing) when the last action on the stream before it was reading.**
+
+
+**Question 214 read man qsort.**
+
+
+
+**Question 216 What arithmetic operations can you perform with pointers, and on what conditions?** 
+You can add or subtract an integer from a pointer. The address is adjusted by multiples of the size of the pointed-to type. You can also subtract two pointers if they point into the same array object (or one past it).
+
+
+**Question 217 What is the purpose of void*?**
+`void *` is a generic pointer type that can hold the address of any object type and can be converted to and from other object pointer types
+
+**Question 218 What is the purpose of NULL?**
+`NULL` represents a null pointer, meaning a pointer that does not point to any valid object or function.
+
+
+**Question 219 What is the difference between 0 in pointer context and 0 as an integer value?**
+`0` in a pointer context means a null pointer constant, so the pointer does not point to a valid object.   `0` as an integer value is simply the numeric value zero.
+
+**Question 220 What is ptrdiff_t and how is it used?**
+`ptrdiff_t` is a signed integer type used to store the result of subtracting two pointers. The result represents the number of elements between the pointers, provided they refer to the same array object.
+
+**Question 221 What is the difference between size_t and ptrdiff_t?**
+`size_t` is an unsigned integer type used to represent object sizes and counts. `ptrdiff_t` is a signed integer type used to represent the result of subtracting two pointers.
+
+ **Question 222 What are first-class objects?**
+ First-class objects are values that can be stored in variables, passed as arguments, returned from functions, and manipulated like other ordinary values.
+
+
+**Question 223 are functions first-class objects in C?**
+Functions are not first-class objects in C, but function pointers can be stored, passed to functions, and returned from functions, providing some first-class-like behavior.
+
+
+**Question 224 What data regions does the C abstract machine contain?**
+The C abstract machine contains regions for static storage, automatic storage, and dynamically allocated storage.
+
+**Question 225 Is the constant data region usually write-protected by hardware?**
+Yes. Constant/read-only data is usually placed in a read-only memory region, and the operating system/hardware memory protection prevents writes to it.
+
+
+**Question 226 What is the connection between pointers and arrays?**
+An array is a contiguous sequence of elements of the same type. In most expressions, the array name is converted to a pointer to its first element. Pointer arithmetic can then be used to access array elements.
+
+
+
+**Question 227 What is the dynamic memory allocation?**
+memory that given in the run time form the heap 
+
+**Question 228 What is the sizeof operator? When is it computed?**
+`sizeof` is an operator that returns the size of a type or object in bytes. In most cases, it is evaluated at compile time.
+
+
+**Question 229 When are the string literals stored in .rodata?**
+String literals are usually stored in `.rodata` because they are not supposed to be modified.
+
+
+**Question 230 What is string interning?**
+String interning is the reuse of a single stored copy of identical string literals, so multiple references may point to the same string data.
+
+
+**Question 231 Which data model are we using?**
+We are using the LP64 data model, where `int` is 32 bits, while `long` and pointers are 64 bits.
+
+**Question 232 Which header contains platform-independent types?**
+stdint.h
+
+**Question 233 how do we concatenate string literals in compile time?**
+String literals are concatenated at compile time by writing them adjacent to each other, for example `"Hello, " "world!"`.
+
+
+ **Question 234 What is the data stream?**
+ A data stream is an abstraction representing a sequence of data transferred between a program and an input or output source, such as a file, terminal, or device.
+
+
+**Question 235 Is there a difference between a data stream and a descriptor?**
+Yes. A data stream is a higher-level C library abstraction, usually represented by `FILE *`, while a file descriptor is a lower-level operating-system handle used for I/O.
+
+
+**Question 236 how do we get the descriptor from stream?**
+Use `fileno(stream)` to obtain the underlying file descriptor from a `FILE *` stream.
+
+**Question 237 are there any streams opened when the program starts?**
+Yes. When a C program starts, the standard streams `stdin`, `stdout`, and `stderr` are normally already open.
+
+**Question 238 What is the difference between binary and text streams?**
+A text stream represents data as characters and may perform text translations, while a binary stream transfers raw bytes without such interpretation.
+
+**Question 239 how do we open a binary stream? a text stream?**
+Text stream: use modes like `"r"`, `"w"`, `"a"`.  
+Binary stream: use modes like `"rb"`, `"wb"`, `"ab"`.
